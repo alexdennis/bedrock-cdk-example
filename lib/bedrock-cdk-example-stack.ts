@@ -45,6 +45,7 @@ export class BedrockCdkExampleStack extends cdk.Stack {
       }
     );
 
+    // Refer to https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html
     const actionGroupExecutor = new lambda.Function(
       this,
       "BedrockAgentActionGroupExecutor",
@@ -53,6 +54,7 @@ export class BedrockCdkExampleStack extends cdk.Stack {
         handler: "lambda.handler",
         code: lambda.Code.fromAsset(path.join(__dirname, pathToLambdaFile)),
         timeout: cdk.Duration.seconds(600),
+        memorySize: 1024,
         role: lambdaFunctionRole,
       }
     );
